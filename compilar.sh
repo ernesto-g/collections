@@ -1,1 +1,1 @@
-gcc main.c dict.c  -o main
+gcc main.c collections/Dict.c collections/LinkedList.c  -o main
