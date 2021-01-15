@@ -58,7 +58,7 @@ int main(void)
 	printf("\ntest1 get devolvio: %s",val);
 
 	val = dict_get(diccionario,"Lalala");
-	printf("\ntest2 get devolvio: %x",val);
+	printf("\ntest2 get devolvio: %s",val);
 
 	return EXIT_SUCCESS;
 }

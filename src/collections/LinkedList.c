@@ -134,7 +134,7 @@ int test_addNode(LinkedList* this, int nodeIndex,void* pElement)
 }
 
 /** \brief  Agrega un elemento a la lista
- * \param pList LinkedList* Puntero a la lista
+ * \param this LinkedList* Puntero a la lista
  * \param pElement void* Puntero al elemento a ser agregado
  * \return int Retorna  (-1) Error: si el puntero a la lista es NULL
  *                      ( 0) Si funciono correctamente
