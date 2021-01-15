@@ -39,22 +39,15 @@ typedef struct{
 #define GROWTH_FACTOR (2)
 #define MULTIPLIER (97)
 
-/* create a new empty dictionary, if the size value is 0, the default value will be used*/
 Dictionary* dict_new(int size);
 
-/* destroy a dictionary */
 int dict_delete(Dictionary*);
 
-/* insert a new key-value pair into an existing dictionary */
 int dict_insert(Dictionary*, char *key, void* value);
 
-/* return the most recently inserted value associated with a key */
-/* or 0 if no matching key is present */
 void* dict_get(Dictionary*, char*key);
 
-/* delete the most recently inserted record with the given key */
-/* if there is no such record, has no effect */
-void dict_remove(Dictionary*, char *key);
+int dict_remove(Dictionary*, char *key);
 
 LinkedList* dict_getKeys(Dictionary* this);
 

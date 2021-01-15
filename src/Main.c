@@ -3,13 +3,10 @@
 #include "collections/Dictionary.h"
 #include "collections/LinkedList.h"
 
-
+void printDict(Dictionary* diccionario);
 
 int main(void)
 {
-	LinkedList* listaClaves;
-	LinkedList* listaValores;
-	LinkedList* listaValoresUnicos;
 	Dictionary* diccionario = dict_new(0);
 
 	char valor1[] = "UNO";
@@ -22,21 +19,50 @@ int main(void)
 	dict_insert(diccionario, "DosBis",valor2);
 	dict_insert(diccionario, "Tres",valor3);
 
+	printDict(diccionario);
+
+	dict_remove(diccionario,"Uno");
+	printf("Removi la key 'Uno'\r\n");
+
+	printDict(diccionario);
+
+	char* val = dict_get(diccionario,"DosBis");
+	printf("\ntest1 get devolvio: %s",val);
+
+	val = dict_get(diccionario,"Lalala");
+	printf("\ntest2 get devolvio: %x",val);
+
+	return EXIT_SUCCESS;
+}
+
+void printDict(Dictionary* diccionario)
+{
+	LinkedList* listaClaves;
+	LinkedList* listaValores;
+	LinkedList* listaValoresUnicos;
+
 	listaClaves = dict_getKeys(diccionario);
 	listaValores = dict_getValues(diccionario);
 	listaValoresUnicos = dict_getUniqueValues(diccionario);
 
+	printf("Keys:\n");
 	for(int i=0; i < ll_len(listaClaves) ;i++)
 	{
-		printf("CLave: %s\n",(char*)ll_get(listaClaves,i));
+		printf("'%s'\n",(char*)ll_get(listaClaves,i));
 	}
+	printf("Values(str):\n");
 	for(int i=0; i < ll_len(listaValores) ;i++)
 	{
-		printf("Valor: %s\n",(char*)ll_get(listaValores,i));
+		printf("%s\n",(char*)ll_get(listaValores,i));
 	}
+	printf("Unique Values(str):\n");
 	for(int i=0; i < ll_len(listaValoresUnicos) ;i++)
 	{
-		printf("Valor Unico: %s\n",(char*)ll_get(listaValoresUnicos,i));
+		printf("%s\n",(char*)ll_get(listaValoresUnicos,i));
 	}
-	return EXIT_SUCCESS;
+	printf("____________________\n");
+
+	ll_deleteLinkedList(listaClaves);
+	ll_deleteLinkedList(listaValores);
+	ll_deleteLinkedList(listaValoresUnicos);
 }

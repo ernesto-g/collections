@@ -32,28 +32,33 @@ Dictionary* dict_new(int size)
 }
 
 
-/** \brief Elimina un diccionario
- *
+/** \brief Elimina un diccionario de memoria. Luego de invocar a esta funcion el puntero al diccionario
+ *         no puede seguir utilizandose.
  * \param this puntero al diccionario a ser eliminado
- * \return void
- *
+ * \return (-1) Error: El puntero al diccionario es NULL
+ *         (0) OK
  */
-void dict_deleteDictionary(Dictionary* this)
+int dict_deleteDictionary(Dictionary* this)
 {
     int i;
     DictElement* pAuxElement;
     DictElement* pAuxNextElement;
 
-    for(i = 0; i < this->size; i++) {
-        for(pAuxElement = this->table[i]; pAuxElement != 0; pAuxElement = pAuxNextElement)
-        {
-            pAuxNextElement = pAuxElement->next;
-            free(pAuxElement->key);
-            free(pAuxElement);
-        }
+    if(this!=NULL)
+    {
+		for(i = 0; i < this->size; i++) {
+			for(pAuxElement = this->table[i]; pAuxElement != 0; pAuxElement = pAuxNextElement)
+			{
+				pAuxNextElement = pAuxElement->next;
+				free(pAuxElement->key);
+				free(pAuxElement);
+			}
+		}
+		free(this->table);
+		free(this);
+		return 0;
     }
-    free(this->table);
-    free(this);
+    return -1;
 }
 
 
@@ -117,11 +122,11 @@ int grow(Dictionary* this)
 /** \brief Agrega un nuevo elemento (key-value) al diccionario
  *
  * \param this Puntero al direccionario
- * \param key Clave
- * \param value Valor
+ * \param key Cadena de carecteres con la key.
+ * \param value Valor (Puntero void*)
  *
  * \return int Retorna  (-1) Error: si el puntero del diccionario o la clave o el valor es NULL o (si no es posible crear en memoria un nuevo elemento)
- *                      (-2) Si se hagoto el lugar y no es posible hacer crecer mas el diccionario
+ *                      (-2) Si se agoto el lugar y no es posible hacer crecer mas el diccionario
  *                      ( 0) Si funciono correctamente
  */
 int dict_insert(Dictionary* this, char *key, void* value)
@@ -173,50 +178,67 @@ int dict_insert(Dictionary* this, char *key, void* value)
     return retorno;
 }
 
-/* return the most recently inserted value associated with a key */
-/* or 0 if no matching key is present */
-void * dict_get(Dictionary* this, char *key)
+
+/** \brief Devuelve el valor asociado a la key pasada como argumento
+ *
+ * \param this Puntero al direccionario.
+ * \param key Cadena de carecteres con la key.
+ * \return void* Retorna  (NULL) Error: si el puntero del diccionario this es NULL.
+ *                         Puntero al valor correspondiente a la key.
+ */
+void* dict_get(Dictionary* this, char *key)
 {
     DictElement* pElement;
 
-    for(pElement = this->table[hash_function(this,key)]; pElement != 0; pElement = pElement->next) {
-        if(!strcmp(pElement->key, key)) {
-            /* got it */
-            return pElement->value;
-        }
+    if(this!=NULL && key!=NULL)
+    {
+		for(pElement = this->table[hash_function(this,key)]; pElement != 0; pElement = pElement->next) {
+			if(!strcmp(pElement->key, key)) {
+				/* got it */
+				return pElement->value;
+			}
+		}
     }
-
-    return 0;
+    return NULL;
 }
 
-/* delete the most recently inserted record with the given key */
-/* if there is no such record, has no effect */
-void dict_remove(Dictionary* this, char *key)
+/** \brief Elimina el valor correspondiente a la key pasada como argumento.
+ *
+ * \param this Puntero al direccionario
+ * \param key Cadena de carecteres con la key.
+ * \return int Retorna  (-1) Error: si el puntero del diccionario this es NULL o si no es posible crear en memoria una lista auxiliar
+ *                      (0) Si funciono correctamente
+ */
+int dict_remove(Dictionary* this, char *key)
 {
     DictElement** prev;          /* what to change when element is deleted */
     DictElement* pElement;              /* what to delete */
 
-    for(prev = &(this->table[hash_function(this,key)]);
-        *prev != 0;
-        prev = &((*prev)->next)) {
-        if(!strcmp((*prev)->key, key)) {
-            /* got it */
-            pElement = *prev;
-            *prev = pElement->next;
+    if(this!=NULL && key!=NULL)
+    {
+		for(prev = &(this->table[hash_function(this,key)]);
+			*prev != 0;
+			prev = &((*prev)->next)) {
+			if(!strcmp((*prev)->key, key)) {
+				/* got it */
+				pElement = *prev;
+				*prev = pElement->next;
 
-            free(pElement->key);
-            free(pElement);
+				free(pElement->key);
+				free(pElement);
 
-            return;
-        }
+				return 0; //OK
+			}
+		}
     }
+    return -1;
 }
 
-/** \brief Obtiene una lista con las claves presentes en el diccionario
+/** \brief Obtiene una lista con las claves presentes en el diccionario.
  *
  * \param this Puntero al direccionario
- * \return int Retorna  (-1) Error: si el puntero del diccionario this es NULL o (si no es posible crear en memoria un diccionario auxiliar)
- *                      ( 0) Si funciono correctamente
+ * \return LinkediList* Retorna  (NULL) Error: si el puntero del diccionario this es NULL o si no es posible crear en memoria una lista auxiliar
+ *                               (!=NULL) Si funciono correctamente
  */
 LinkedList* dict_getKeys(Dictionary* this)
 {
@@ -244,8 +266,8 @@ LinkedList* dict_getKeys(Dictionary* this)
 /** \brief Obtiene una lista con los valores presentes en el diccionario
  *
  * \param this Puntero al direccionario
- * \return int Retorna  (-1) Error: si el puntero del diccionario this es NULL o (si no es posible crear en memoria un diccionario auxiliar)
- *                      ( 0) Si funciono correctamente
+ * \return LinkediList* Retorna  (NULL) Error: si el puntero del diccionario this es NULL o si no es posible crear en memoria una lista auxiliar
+ *                      	     (!=NULL) Si funciono correctamente
  */
 LinkedList* dict_getValues(Dictionary* this)
 {
@@ -273,9 +295,9 @@ LinkedList* dict_getValues(Dictionary* this)
 /** \brief Obtiene una lista con los valores presentes en el diccionario sin repetir
  *
  * \param this Puntero al direccionario
- * \return int Retorna  (-1) Error: si el puntero del diccionario this es NULL o (si no es posible crear en memoria un diccionario auxiliar)
- *                      ( 0) Si funciono correctamente
- */
+* \return LinkediList* Retorna  (NULL) Error: si el puntero del diccionario this es NULL o si no es posible crear en memoria una lista auxiliar
+ *                              (!=NULL) Si funciono correctamente
+  */
 LinkedList* dict_getUniqueValues(Dictionary* this)
 {
     int i;
