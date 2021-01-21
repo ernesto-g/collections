@@ -9,13 +9,27 @@
 #include "LinkedList.h"
 #include "Set.h"
 
+// Private functions
+static int contains(Set* this,void* pElement);
+static int searchElement(Set* this,void* pElement);
+//__________________
+
+
 /** \brief Crea un Set en memoria de manera dinamica
  *
- * \param void
- * \return Dictionary* Retorna el puntero al set o NULL en caso de error
+ * \param compareFn: Recibe NULL para trabajar con elementos punteros (se diferencian por sus direcciones de memoria).
+ * 					 o una funcion de comparacion de elementos en el caso de que se quieran
+ * 					 diferenciar por algun campo que no sea la direccion de memoria de los mismos.
+ *
+ *					 El formato de la funcion debe ser: int (*compareFn)(void*,void*); En el caso de que los elementos sean iguales, debe devolver 0.
+ *
+ *					 Para el caso de cadenas de caracteres, puede utilizarse la funcion strcmp. Ejemplo:
+ *					 Set* conjunto = set_new(SET_CMP_FN(strcmp));
+ *
+ * \return Set* Retorna el puntero al set o NULL en caso de error
  *
  */
-Set* set_new(void)
+Set* set_new(int (*compareFn)(void*,void*))
 {
 	Set* this;
 
@@ -27,6 +41,10 @@ Set* set_new(void)
 		{
 			free(this);
 			this=NULL;
+		}
+		else
+		{
+			this->compareFn = compareFn;
 		}
 	}
 	return this;
@@ -45,7 +63,7 @@ int set_add(Set* this, void* pElement)
 
 	if(this!=NULL)
 	{
-		if(ll_contains(this->list,pElement)==0)
+		if(contains(this,pElement)==0)
 		{
 			// Element does not exist in set
 			ll_add(this->list,pElement);
@@ -90,7 +108,7 @@ int set_contains(Set* this, void* pValue)
 
 	if(this!=NULL)
 	{
-		retorno= ll_contains(this->list,pValue);
+		retorno= contains(this,pValue);
 	}
 	return retorno;
 }
@@ -126,7 +144,17 @@ int set_remove(Set* this, void* pValue)
 
 	if(this!=NULL)
 	{
-		index = ll_indexOf(this->list,pValue);
+		if(this->compareFn==NULL)
+		{
+			// search by pointers
+			index = ll_indexOf(this->list,pValue);
+		}
+		else
+		{
+			// search by value
+			index = searchElement(this,pValue);
+		}
+
 		if(index>=0)
 		{
 			retorno = ll_remove(this->list,index);
@@ -167,4 +195,39 @@ LinkedList* set_getValues(Set* this)
 		retList = ll_clone(this->list);
 	}
 	return retList;
+}
+
+
+static int contains(Set* this,void* pElement)
+{
+	if(this->compareFn==NULL)
+	{
+		return ll_contains(this->list,pElement); // use pointer values to compare
+	}
+	else
+	{
+		if(searchElement(this,pElement)>=0)
+			return 1; // pElement exists in Set
+	}
+	return 0;
+}
+
+static int searchElement(Set* this,void* pElement)
+{
+	int i;
+	void* pElementInList;
+	int ret=-1;
+	int size = ll_len(this->list);
+
+	for(i=0; i<size; i++)
+	{
+		pElementInList = ll_get(this->list,i);
+		if(this->compareFn(pElement,pElementInList)==0)
+		{
+			// this Set contains pElement
+			ret=i;
+			break;
+		}
+	}
+	return ret;
 }

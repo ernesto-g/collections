@@ -13,12 +13,16 @@
 struct S_Set
 {
 	LinkedList* list;
+	int (*compareFn)(void*,void*);
 };
 
 typedef struct S_Set Set;
 
 
-Set* set_new(void);
+#define SET_CMP_FN(X) (int (*)(void *, void *))X
+
+
+Set* set_new(int (*compareFn)(void*,void*));
 int set_add(Set* this, void* pValue);
 int set_clear(Set* this);
 int set_contains(Set* this, void* pValue);
