@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Collections: Fichero Fuente /Users/Mauro/Documents/workspace_pl1_2021/collections/src/collections/Set.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="fra.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Collections
+   </div>
+   <div id="projectbrief">Biblioteca de C que provee una arquitectura para almacenar y manipular elementos. La misma consta de las siguientes entidades.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_set_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Set.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_set_8c.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Set.c</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  Created on: Jan 15, 2021</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *      Author: ernesto</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_linked_list_8h.html">LinkedList.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_set_8h.html">Set.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// Private functions</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> contains(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>,<span class="keywordtype">void</span>* pElement);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> searchElement(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>,<span class="keywordtype">void</span>* pElement);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//__________________</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="_set_8c.html#aa0b1b19c55ee64fd07a6bfa678734f80">   32</a></span>&#160;<a class="code" href="struct_s___set.html">Set</a>* <a class="code" href="_set_8c.html#aa0b1b19c55ee64fd07a6bfa678734f80">set_new</a>(<span class="keywordtype">int</span> (*compareFn)(<span class="keywordtype">void</span>*,<span class="keywordtype">void</span>*))</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">this</span> = (<a class="code" href="struct_s___set.html">Set</a>*)malloc(<span class="keyword">sizeof</span>(<a class="code" href="struct_s___set.html">Set</a>));</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">this</span>!=NULL)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        this-&gt;list = <a class="code" href="_linked_list_8c.html#a895db0a432322071333ca72dd04668a4">ll_newLinkedList</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span>(this-&gt;list==NULL)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            free(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keyword">this</span>=NULL;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            this-&gt;compareFn = compareFn;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="_set_8c.html#a087b55198504b7286061b1e68ec46cc5">   60</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_set_8c.html#a087b55198504b7286061b1e68ec46cc5">set_add</a>(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>, <span class="keywordtype">void</span>* pElement)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">int</span> retorno=-1;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">this</span>!=NULL)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">if</span>(contains(<span class="keyword">this</span>,pElement)==0)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="comment">// Element does not exist in set</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <a class="code" href="_linked_list_8c.html#a23da0e19924f5a63990aed7b6e3be3e5">ll_add</a>(this-&gt;list,pElement);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            retorno=0;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="comment">// Element is already in set</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            retorno=1;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">return</span> retorno;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="_set_8c.html#a78fb9867c1f9d7cfe4841ed99558cd5a">   86</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_set_8c.html#a78fb9867c1f9d7cfe4841ed99558cd5a">set_clear</a>(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;{</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">int</span> retorno=-1;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">this</span>!=NULL)</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="_linked_list_8c.html#a050a09240c6f2df29832967cc156a10d">ll_clear</a>(this-&gt;list);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        retorno=0;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">return</span> retorno;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="_set_8c.html#a27587c53ea87d3bdf184c17711bfe61b">  105</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_set_8c.html#a27587c53ea87d3bdf184c17711bfe61b">set_contains</a>(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>, <span class="keywordtype">void</span>* pValue)</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;{</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">int</span> retorno=-1;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">this</span>!=NULL)</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        retorno= contains(<span class="keyword">this</span>,pValue);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> retorno;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="_set_8c.html#a3d88343c5e816d5e50ece964e2d62a07">  122</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_set_8c.html#a3d88343c5e816d5e50ece964e2d62a07">set_isEmpty</a>(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">int</span> retorno=-1;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">this</span>!=NULL)</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        retorno = <a class="code" href="_linked_list_8c.html#a6980bddd366f59ad6bd5fcd7ffc38641">ll_isEmpty</a>(this-&gt;list);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">return</span> retorno;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="_set_8c.html#a3f0c195803c2d3b586cc34729a625124">  140</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_set_8c.html#a3f0c195803c2d3b586cc34729a625124">set_remove</a>(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>, <span class="keywordtype">void</span>* pValue)</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;{</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordtype">int</span> retorno=-1;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">int</span> index;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">this</span>!=NULL)</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">if</span>(this-&gt;compareFn==NULL)</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <span class="comment">// search by pointers</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            index = <a class="code" href="_linked_list_8c.html#a1f6865962a6aa6cde3b9f2ef75f17046">ll_indexOf</a>(this-&gt;list,pValue);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="comment">// search by value</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            index = searchElement(<span class="keyword">this</span>,pValue);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">if</span>(index&gt;=0)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            retorno = <a class="code" href="_linked_list_8c.html#ae7098a3e05a284b36c558f1e0b498754">ll_remove</a>(this-&gt;list,index);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            retorno = 1;<span class="comment">// Element was not in set</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordflow">return</span> retorno;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;}</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="_set_8c.html#aa9bd74c67bf955848f9183be6f2ddc26">  173</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_set_8c.html#aa9bd74c67bf955848f9183be6f2ddc26">set_size</a>(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>)</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;{</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordtype">int</span> retorno=-1;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">this</span>!=NULL)</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        retorno = <a class="code" href="_linked_list_8c.html#a43c271029de96a39da36cf21ea63267f">ll_len</a>(this-&gt;list);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">return</span> retorno;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;}</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="_set_8c.html#a1c3ba5c5946db748c9374146d702be65">  189</a></span>&#160;<a class="code" href="struct_linked_list.html">LinkedList</a>* <a class="code" href="_set_8c.html#a1c3ba5c5946db748c9374146d702be65">set_getValues</a>(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>)</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;{</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <a class="code" href="struct_linked_list.html">LinkedList</a>* retList=NULL;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">this</span>!=NULL)</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        retList = <a class="code" href="_linked_list_8c.html#aade58b025efbf0494c4ae924e2ef98e9">ll_clone</a>(this-&gt;list);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordflow">return</span> retList;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;}</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> contains(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>,<span class="keywordtype">void</span>* pElement)</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;{</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordflow">if</span>(this-&gt;compareFn==NULL)</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_linked_list_8c.html#a83cf47a4321e3c66362f9146346bb32b">ll_contains</a>(this-&gt;list,pElement); <span class="comment">// use pointer values to compare</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="keywordflow">if</span>(searchElement(<span class="keyword">this</span>,pElement)&gt;=0)</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keywordflow">return</span> 1; <span class="comment">// pElement exists in Set</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;}</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> searchElement(<a class="code" href="struct_s___set.html">Set</a>* <span class="keyword">this</span>,<span class="keywordtype">void</span>* pElement)</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;{</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">void</span>* pElementInList;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">int</span> ret=-1;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordtype">int</span> size = <a class="code" href="_linked_list_8c.html#a43c271029de96a39da36cf21ea63267f">ll_len</a>(this-&gt;list);</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordflow">for</span>(i=0; i&lt;size; i++)</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    {</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        pElementInList = <a class="code" href="_linked_list_8c.html#a3e367b9f382000e3d2b4119b8c5f3ae5">ll_get</a>(this-&gt;list,i);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordflow">if</span>(this-&gt;compareFn(pElement,pElementInList)==0)</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            <span class="comment">// this Set contains pElement</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            ret=i;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        }</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    }</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;}</div>
+<div class="ttc" id="a_linked_list_8c_html_a050a09240c6f2df29832967cc156a10d"><div class="ttname"><a href="_linked_list_8c.html#a050a09240c6f2df29832967cc156a10d">ll_clear</a></div><div class="ttdeci">int ll_clear(LinkedList *this)</div><div class="ttdoc">Elimina todos los elementos de la lista.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00250">LinkedList.c:250</a></div></div>
+<div class="ttc" id="a_linked_list_8c_html_a1f6865962a6aa6cde3b9f2ef75f17046"><div class="ttname"><a href="_linked_list_8c.html#a1f6865962a6aa6cde3b9f2ef75f17046">ll_indexOf</a></div><div class="ttdeci">int ll_indexOf(LinkedList *this, void *pElement)</div><div class="ttdoc">Busca el indice de la primer ocurrencia del elemento pasado como parametro.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00300">LinkedList.c:300</a></div></div>
+<div class="ttc" id="a_linked_list_8c_html_a23da0e19924f5a63990aed7b6e3be3e5"><div class="ttname"><a href="_linked_list_8c.html#a23da0e19924f5a63990aed7b6e3be3e5">ll_add</a></div><div class="ttdeci">int ll_add(LinkedList *this, void *pElement)</div><div class="ttdoc">Agrega un elemento a la lista.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00143">LinkedList.c:143</a></div></div>
+<div class="ttc" id="a_linked_list_8c_html_a3e367b9f382000e3d2b4119b8c5f3ae5"><div class="ttname"><a href="_linked_list_8c.html#a3e367b9f382000e3d2b4119b8c5f3ae5">ll_get</a></div><div class="ttdeci">void * ll_get(LinkedList *this, int index)</div><div class="ttdoc">Permite realizar el test de la funcion addNode la cual es privada.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00164">LinkedList.c:164</a></div></div>
+<div class="ttc" id="a_linked_list_8c_html_a43c271029de96a39da36cf21ea63267f"><div class="ttname"><a href="_linked_list_8c.html#a43c271029de96a39da36cf21ea63267f">ll_len</a></div><div class="ttdeci">int ll_len(LinkedList *this)</div><div class="ttdoc">Retorna la cantidad de elementos de la lista.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00034">LinkedList.c:34</a></div></div>
+<div class="ttc" id="a_linked_list_8c_html_a6980bddd366f59ad6bd5fcd7ffc38641"><div class="ttname"><a href="_linked_list_8c.html#a6980bddd366f59ad6bd5fcd7ffc38641">ll_isEmpty</a></div><div class="ttdeci">int ll_isEmpty(LinkedList *this)</div><div class="ttdoc">Indica si la lista esta o no vacia.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00329">LinkedList.c:329</a></div></div>
+<div class="ttc" id="a_linked_list_8c_html_a83cf47a4321e3c66362f9146346bb32b"><div class="ttname"><a href="_linked_list_8c.html#a83cf47a4321e3c66362f9146346bb32b">ll_contains</a></div><div class="ttdeci">int ll_contains(LinkedList *this, void *pElement)</div><div class="ttdoc">Determina si la lista contiene o no el elemento pasado como parametro.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00403">LinkedList.c:403</a></div></div>
+<div class="ttc" id="a_linked_list_8c_html_a895db0a432322071333ca72dd04668a4"><div class="ttname"><a href="_linked_list_8c.html#a895db0a432322071333ca72dd04668a4">ll_newLinkedList</a></div><div class="ttdeci">LinkedList * ll_newLinkedList(void)</div><div class="ttdoc">Crea un nuevo LinkedList en memoria de manera dinamica.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00015">LinkedList.c:15</a></div></div>
+<div class="ttc" id="a_linked_list_8c_html_aade58b025efbf0494c4ae924e2ef98e9"><div class="ttname"><a href="_linked_list_8c.html#aade58b025efbf0494c4ae924e2ef98e9">ll_clone</a></div><div class="ttdeci">LinkedList * ll_clone(LinkedList *this)</div><div class="ttdoc">Crea y retorna una nueva lista con los elementos de la lista pasada como parametro.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00490">LinkedList.c:490</a></div></div>
+<div class="ttc" id="a_linked_list_8c_html_ae7098a3e05a284b36c558f1e0b498754"><div class="ttname"><a href="_linked_list_8c.html#ae7098a3e05a284b36c558f1e0b498754">ll_remove</a></div><div class="ttdeci">int ll_remove(LinkedList *this, int index)</div><div class="ttdoc">Elimina un elemento de la lista.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00214">LinkedList.c:214</a></div></div>
+<div class="ttc" id="a_linked_list_8h_html"><div class="ttname"><a href="_linked_list_8h.html">LinkedList.h</a></div></div>
+<div class="ttc" id="a_set_8c_html_a087b55198504b7286061b1e68ec46cc5"><div class="ttname"><a href="_set_8c.html#a087b55198504b7286061b1e68ec46cc5">set_add</a></div><div class="ttdeci">int set_add(Set *this, void *pElement)</div><div class="ttdoc">Agrega un elemento al set.</div><div class="ttdef"><b>Definition:</b> <a href="_set_8c_source.html#l00060">Set.c:60</a></div></div>
+<div class="ttc" id="a_set_8c_html_a1c3ba5c5946db748c9374146d702be65"><div class="ttname"><a href="_set_8c.html#a1c3ba5c5946db748c9374146d702be65">set_getValues</a></div><div class="ttdeci">LinkedList * set_getValues(Set *this)</div><div class="ttdoc">Retorna una lista (inkedList) conformada por los elementos del set.</div><div class="ttdef"><b>Definition:</b> <a href="_set_8c_source.html#l00189">Set.c:189</a></div></div>
+<div class="ttc" id="a_set_8c_html_a27587c53ea87d3bdf184c17711bfe61b"><div class="ttname"><a href="_set_8c.html#a27587c53ea87d3bdf184c17711bfe61b">set_contains</a></div><div class="ttdeci">int set_contains(Set *this, void *pValue)</div><div class="ttdoc">Verifica si un elemento esta o no contenido en el set.</div><div class="ttdef"><b>Definition:</b> <a href="_set_8c_source.html#l00105">Set.c:105</a></div></div>
+<div class="ttc" id="a_set_8c_html_a3d88343c5e816d5e50ece964e2d62a07"><div class="ttname"><a href="_set_8c.html#a3d88343c5e816d5e50ece964e2d62a07">set_isEmpty</a></div><div class="ttdeci">int set_isEmpty(Set *this)</div><div class="ttdoc">Verifica si el set se encuentra vacio.</div><div class="ttdef"><b>Definition:</b> <a href="_set_8c_source.html#l00122">Set.c:122</a></div></div>
+<div class="ttc" id="a_set_8c_html_a3f0c195803c2d3b586cc34729a625124"><div class="ttname"><a href="_set_8c.html#a3f0c195803c2d3b586cc34729a625124">set_remove</a></div><div class="ttdeci">int set_remove(Set *this, void *pValue)</div><div class="ttdoc">Quita un elemento del set.</div><div class="ttdef"><b>Definition:</b> <a href="_set_8c_source.html#l00140">Set.c:140</a></div></div>
+<div class="ttc" id="a_set_8c_html_a78fb9867c1f9d7cfe4841ed99558cd5a"><div class="ttname"><a href="_set_8c.html#a78fb9867c1f9d7cfe4841ed99558cd5a">set_clear</a></div><div class="ttdeci">int set_clear(Set *this)</div><div class="ttdoc">Limpia el set, es decir que de a este sin elementos.</div><div class="ttdef"><b>Definition:</b> <a href="_set_8c_source.html#l00086">Set.c:86</a></div></div>
+<div class="ttc" id="a_set_8c_html_aa0b1b19c55ee64fd07a6bfa678734f80"><div class="ttname"><a href="_set_8c.html#aa0b1b19c55ee64fd07a6bfa678734f80">set_new</a></div><div class="ttdeci">Set * set_new(int(*compareFn)(void *, void *))</div><div class="ttdoc">Crea un Set en memoria de manera dinamica.</div><div class="ttdef"><b>Definition:</b> <a href="_set_8c_source.html#l00032">Set.c:32</a></div></div>
+<div class="ttc" id="a_set_8c_html_aa9bd74c67bf955848f9183be6f2ddc26"><div class="ttname"><a href="_set_8c.html#aa9bd74c67bf955848f9183be6f2ddc26">set_size</a></div><div class="ttdeci">int set_size(Set *this)</div><div class="ttdoc">Retorna la cantidad de elementos que forman parte del set.</div><div class="ttdef"><b>Definition:</b> <a href="_set_8c_source.html#l00173">Set.c:173</a></div></div>
+<div class="ttc" id="a_set_8h_html"><div class="ttname"><a href="_set_8h.html">Set.h</a></div></div>
+<div class="ttc" id="astruct_linked_list_html"><div class="ttname"><a href="struct_linked_list.html">LinkedList</a></div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00026">LinkedList.h:27</a></div></div>
+<div class="ttc" id="astruct_s___set_html"><div class="ttname"><a href="struct_s___set.html">S_Set</a></div><div class="ttdef"><b>Definition:</b> <a href="_set_8h_source.html#l00013">Set.h:14</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d5762d0567c4c00fccbddb05db217c60.html">collections</a></li><li class="navelem"><a class="el" href="dir_4ef7c28c5557d1026b0972916ef0020e.html">src</a></li><li class="navelem"><a class="el" href="dir_c7608abf1a8c037dc66f65774b57e2f5.html">collections</a></li><li class="navelem"><a class="el" href="_set_8c.html">Set.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

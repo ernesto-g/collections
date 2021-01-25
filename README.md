@@ -7,22 +7,28 @@ La misma consta de las siguientes entidades.
   - Dictionary
   - Set
 
-# Linkedlist
+## Linkedlist
 
   - Permite almacenar punteros de cualquier tipo en una lista ordenada.
   - Provee funciones para agregar,modificar y quitar elementos.
   - Provee funciones para realizar operaciones de sort,map y filter.
 
-# Dictionary
+## Dictionary
 
   - Permite almacenar punteros de cualquier tipo en un diccionario con claves de tipo cadena de caracteres.
   - Provee funciones para agregar,modificar y quitar elementos.
   - Provee funciones para obtener listas de claves y valores.
 
-# Set
+## Set
 
   - Permite almacenar punteros de cualquier tipo en un conjunto donde no se admiten repetidos.
   - Provee funciones para agregar,modificar y quitar elementos.
+
+# Documentación
+
+La documetación se encuentra en la carpeta ["Documentation"](Documentation/index.html).
+
+
 
 
 # Licencia
