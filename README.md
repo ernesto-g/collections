@@ -26,7 +26,7 @@ La misma consta de las siguientes entidades.
 
 # Documentación
 
-La documetación se encuentra en la carpeta ["Documentation"](Documentation/index.html).
+La documetación se encuentra en la carpeta ["Documentation"](Documentation/html/index.html).
 
 
 
