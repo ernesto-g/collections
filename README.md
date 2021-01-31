@@ -34,10 +34,10 @@ La misma consta de las siguientes entidades.
 Incluir en el proyecto de Eclipse,dentro de la carpeta "src" del proyecto, la carpeta "collections" de este repositorio.
 Luego incluir los archivos de cabecera para poder utilizar la biblioteca:
 
- #include "collections/Collections.h"
- #include "collections/Dictionary.h"
- #include "collections/LinkedList.h"
- #include "collections/Set.h"
+    #include "collections/Collections.h"
+    #include "collections/Dictionary.h"
+    #include "collections/LinkedList.h"
+    #include "collections/Set.h"
 
 # Ejemplos
 
