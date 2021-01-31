@@ -6,6 +6,7 @@ La misma consta de las siguientes entidades.
   - Linkedlist
   - Dictionary
   - Set
+  - Collections
 
 ## Linkedlist
 
@@ -23,6 +24,26 @@ La misma consta de las siguientes entidades.
 
   - Permite almacenar punteros de cualquier tipo en un conjunto donde no se admiten repetidos.
   - Provee funciones para agregar,modificar y quitar elementos.
+
+## Collections
+
+  - Provee funciones útiles para manipular datos de listas, diccionarios y sets.
+
+# Utilización
+
+Incluir en el proyecto de Eclipse,dentro de la carpeta "src" del proyecto, la carpeta "collections" de este repositorio.
+Luego incluir los archivos de cabecera para poder utilizar la biblioteca:
+
+ #include "collections/Collections.h"
+ #include "collections/Dictionary.h"
+ #include "collections/LinkedList.h"
+ #include "collections/Set.h"
+
+# Ejemplos
+
+Este repositorio es un proyecto de Eclipse el cual cuenta con un archivo Main.c en donde se invocan a funciones de ejemplos, ejemploX(). Cada funcion se encuentra es un archivo EjemploX.c
+Puede descomentarse la funcion que se desee, compilar y ejecutar para probar los ejemplos.
+
 
 # Documentación
 

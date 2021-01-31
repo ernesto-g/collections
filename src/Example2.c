@@ -61,6 +61,7 @@ void printSet(Set* s)
 		printf("%s\n",(char*)ll_get(values,i));
 	}
 	printf("___________________\n");
+	ll_deleteLinkedList(values);
 }
 
 
