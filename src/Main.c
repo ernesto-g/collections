@@ -6,10 +6,10 @@
 
 int main(void)
 {
-	//example1(); // Dict
+	example1(); // Dict
 	//example2(); // Set
 	//example3(); // LinkedList
-	example4(); // Collections
+	//example4(); // Collections
 
 	return EXIT_SUCCESS;
 }

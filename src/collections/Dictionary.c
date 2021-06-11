@@ -149,7 +149,8 @@ int dict_insert(Dictionary* this, char *key, void* value)
     	hashNumber = hash_function(this,key) ;
 		for(pAuxElement = this->table[hashNumber]; pAuxElement != 0; pAuxElement = pAuxElement->next)
 		{
-			if(strcmp(pAuxElement->key,strdup(key)) == 0)
+			//if(strcmp(pAuxElement->key,strdup(key)) == 0)
+			if(strcmp(pAuxElement->key,key) == 0) // Fix memory leak
 			{
 				flagFoundKey = 1;
 				pAuxElement->value = value;
